@@ -1,22 +1,21 @@
 package org.ocean.practice.stream;
 
-import static java.util.Comparator.comparing;
-import static java.util.stream.Collectors.toList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public class StreamFunctionTest {
+public class StreamFunctionSample {
   public static void main(String[] args) {
     Set<Dish> set = new HashSet<>();
     set.add(new Dish("apple", 50));
     set.add(new Dish("orange", 30));
     set.add(new Dish("banana", 80));
-    System.out.println(new StreamFunctionTest().nonFunctional(set));
-    System.out.println(new StreamFunctionTest().functional(set));
+    System.out.println(new StreamFunctionSample().nonFunctional(set));
+    System.out.println(new StreamFunctionSample().functional(set));
   }
 
   static class Dish {
@@ -60,7 +59,7 @@ public class StreamFunctionTest {
   }
 
   public List<String> functional(Set<Dish> set) {
-    return set.stream().filter(d -> d.getCalory() > 10).sorted(comparing(Dish::getName))
-        .map(Dish::getName).collect(toList());
+    return set.stream().filter(d -> d.getCalory() > 10).sorted(Comparator.comparing(Dish::getName))
+        .map(Dish::getName).collect(Collectors.toList());
   }
 }
