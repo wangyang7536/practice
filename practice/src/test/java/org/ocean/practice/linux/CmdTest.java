@@ -12,30 +12,38 @@ import java.util.Objects;
 public class CmdTest {
   public static void main(String[] args) {
     String cmd = "sudo lsscsi -t";
-    System.out.println(filter(function(cmd)).keySet());
-    System.out.println(filter(function(cmd)).values());
+    System.out.println(filter(executeCmd(cmd)).keySet());
+    System.out.println(filter(executeCmd(cmd)).values());
+
+    System.out.println(getBlkList());
   }
 
-  public static Map<String, String> filter(List<String> output) {
+  public static List<String> getBlkList() {
+    String cmd = "sudo lsblk";
+    List<String> list = executeCmd(cmd);
+    return list;
+  }
+
+  public static Map<String, String> filter(List<String> outputList) {
     Map<String, String> filterList = new HashMap<>();
-    for (String outputLine : output) {
+    for (String outputLine : outputList) {
       String[] outputStringArray = outputLine.split("\\s+");
       String transport = outputStringArray[2].trim();
       if (!transport.toLowerCase().contains("sata")) {
         continue;
       }
       String devicePath = outputStringArray[outputStringArray.length - 1].trim();
-      String serialNumber = getSN(devicePath);
+      String serialNumber = getSerialNumber(devicePath);
       filterList.put(serialNumber, devicePath);
     }
     return filterList;
   }
 
-  private static String getSN(String path) {
+  private static String getSerialNumber(String path) {
     String cmd = "sudo hdparm -I " + path;
-    List<String> output = function(cmd);
+    List<String> outputList = executeCmd(cmd);
     String serialNumber = null;
-    for (String outputLine : output) {
+    for (String outputLine : outputList) {
       if (outputLine.contains("Serial Number")) {
         String[] outputStringArray = outputLine.split(":\\s+");
         serialNumber = outputStringArray[1].trim();
@@ -45,7 +53,7 @@ public class CmdTest {
     return serialNumber;
   }
 
-  public static List<String> function(String cmd) {
+  public static List<String> executeCmd(String cmd) {
     Objects.requireNonNull(cmd);
     List<String> cmdArgs = new ArrayList<>();
     String[] commandParts = cmd.split("\\s+");

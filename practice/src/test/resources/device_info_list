@@ -1,0 +1,45 @@
+[0:0:0:0]    disk    sas:0x1221000001000000          /dev/sda 
+  transport=sas
+  vendor=ATA     
+  model=WDC WDS250G2B0A-
+  bay_identifier=1
+  enclosure_identifier=0x5a4badb01a452200
+  initiator_port_protocols=none
+  initiator_response_timeout=0
+  I_T_nexus_loss_timeout=0
+  phy_identifier=1
+  ready_led_meaning=0
+  sas_address=0x1221000001000000
+  target_port_protocols=sata
+  tlr_enabled=0
+  tlr_supported=0
+[0:0:1:0]    disk    sas:0x500000e11834d2f2          /dev/sdb 
+  transport=sas
+  vendor=HP      
+  model=EG0146FARTR     
+  bay_identifier=3
+  enclosure_identifier=0x5a4badb01a452200
+  initiator_port_protocols=none
+  initiator_response_timeout=10000
+  I_T_nexus_loss_timeout=1744
+  phy_identifier=3
+  ready_led_meaning=1
+  sas_address=0x500000e11834d2f2
+  target_port_protocols=ssp
+  tlr_enabled=0
+  tlr_supported=0
+[0:0:2:0]    disk    sas:0x1221000002000000          /dev/sdc 
+  transport=sas
+  vendor=ATA     
+  model=TOSHIBA THNSNJ96
+  bay_identifier=2
+  enclosure_identifier=0x5a4badb01a452200
+  initiator_port_protocols=none
+  initiator_response_timeout=0
+  I_T_nexus_loss_timeout=0
+  phy_identifier=2
+  ready_led_meaning=0
+  sas_address=0x1221000002000000
+  target_port_protocols=sata
+  tlr_enabled=0
+  tlr_supported=0
