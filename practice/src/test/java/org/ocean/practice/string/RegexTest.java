@@ -1,5 +1,6 @@
 package org.ocean.practice.string;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,6 +19,16 @@ public class RegexTest {
     String line =
         "/devices/pci0000:00/0000:00:1c.0/0000:03:00.0/host0/port-0:2/end_device-0:2/target0:0:2/0:0:2:0/block/sdc";
     System.out.println(getPci(line));
+
+    String deviceName1 = "sda";
+    String regex3 = "sd[a-z]";
+    System.out.println(matchRegex(deviceName1, regex3));
+
+    List<String> output = new ArrayList<>();
+    output.add("/dev/sdc       480590568K 18875404K 437279452K   5% /mnt/S3Z1NB0K409467N");
+    String regex4 = "^/dev/sdc.*$";
+    output.removeIf(string -> regex4 != null && !string.matches(regex4));
+    System.out.println(output);
   }
 
   public static String getPci(String line) {
