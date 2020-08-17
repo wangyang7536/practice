@@ -24,7 +24,10 @@ public class StringSplitTest {
     outputList.add("  tlr_supported=0");
     outputList.add("[0:0:0:0]    cd/dvd  ata:                            /dev/sr0  ");
     outputList.add("  transport=sata");
-    function(line.trim(), outputList);
+    //function(line.trim(), outputList);
+    String path = "/dev/nvme0n1";
+    String[] pathArr = path.split("/");
+    System.out.println(pathArr[2]);
   }
 
   public static void function(String line, List<String> outputList) {
